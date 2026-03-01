@@ -1,7 +1,6 @@
 #include <iostream>
-#include <unordered_set>
+#include <algorithm> 
 using namespace std;
-
 int main() {
     int n;
     cout << "Enter size: ";
@@ -9,19 +8,23 @@ int main() {
 
     int arr[n];
     cout << "Enter elements: ";
-    for (int i = 0; i < n; i++) cin >> arr[i];
-
-    unordered_set<int> seen, duplicates;
-
     for (int i = 0; i < n; i++) {
-        if (seen.count(arr[i])) duplicates.insert(arr[i]);
-        else seen.insert(arr[i]);
+        cin >> arr[i];
     }
-
-    if (duplicates.empty()) cout << "No duplicates found";
-    else {
-        cout << "Duplicates: ";
-        for (int d : duplicates) cout << d << " ";
+    sort(arr, arr + n);
+    bool found = false;
+    cout << "Duplicates: ";
+    for (int i = 0; i < n - 1; i++) {
+        if (arr[i] == arr[i + 1]) {
+            cout << arr[i] << " ";
+            found = true;
+            while (i < n - 1 && arr[i] == arr[i+1]) {
+                i++;
+            }
+        }
+    }
+    if (!found) {
+        cout << "No duplicates found";
     }
     return 0;
 }
