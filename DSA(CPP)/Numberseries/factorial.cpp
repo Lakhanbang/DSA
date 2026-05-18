@@ -10,10 +10,7 @@ int main() {
     int n;
     cout << "Enter number: ";
     cin >> n;
-
     cout << "Factorial = " ;
-    for (int i = 0; i < n; i++){
     cout<< fact(i);
-    }
     return 0;
 }
